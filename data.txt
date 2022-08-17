@@ -1,0 +1,35 @@
+create database QuanLyDiemThi;
+use QuanLyDiemThi;
+create table HOCSINH(
+MaHS varchar(20) primary key,
+TenHS varchar(50),
+NgaySinh date,
+Lop varchar(20),
+GT varchar(20)
+);
+
+create table MONHOC(
+MaMH varchar(20) primary key,
+TenMH varchar(50)
+);
+
+create table BangDiem(
+MaHS varchar(20),
+MaMH varchar(20),
+DiemThi float(20,20),
+NgayKT datetime,
+primary key(MaHS,MaMH),
+foreign key(MaHS) references HOCSINH(MaHS),
+foreign key(MaMH) references MONHOC(MaMH)
+);
+
+create table GiaoVien(
+MaGV varchar(20) primary key,
+TenGV varchar(20),
+SDT varchar(10)
+);
+
+alter table MONHOC add MaGV varchar(20);
+alter table MONHOC add constraint FK_MaGV foreign key (MaGV) references GiaoVien(MaGV);
+
+
